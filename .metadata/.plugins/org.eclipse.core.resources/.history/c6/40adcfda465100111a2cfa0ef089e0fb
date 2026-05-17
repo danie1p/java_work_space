@@ -1,0 +1,18 @@
+package platzi.play.plataforma;
+
+import java.util.List;
+
+import platzi.play.contenido.Pelicula;
+
+public class Plataforma {
+	private String nombre;
+	private List<Pelicula> contenido;
+	
+	public Plataforma(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public void agregar(Pelicula elemento) {
+		this.contenido.add(elemento);
+	}
+}

@@ -1,0 +1,71 @@
+package platzi.play;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Scanner;
+
+import platzi.play.contenido.Pelicula;
+import platzi.play.plataforma.Usuario;
+import platzi.play.util.ScannerUtils;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		System.out.println("PLATZI PLAY!");
+		
+		String nombre = ScannerUtils.capturarTexto("Nombre del contenido");
+		String genero = ScannerUtils.capturarTexto("Genero del contenido");
+		int duracion = ScannerUtils.capturarNumero("Duracion del contenido");
+		double calificacion = ScannerUtils.capturarDecimal("Calificacion del contenido");
+		
+		Pelicula pelicula = new Pelicula();
+		pelicula.titulo = nombre;
+		pelicula.fechaEstreno = LocalDate.of(2018, 10, 15);
+		pelicula.genero = "Fantasia";
+		pelicula.calificar(4.5);
+		pelicula.duracion = 120;
+		
+		long duracionLong = pelicula.duracion;		
+		int calificacionInt = (int) pelicula.calificacion;
+		long numeroDePremios = Long.parseLong("23");
+		
+		System.out.println("Calificacion Int: " + calificacionInt);
+		System.out.println("Duracion long: " + duracionLong);
+		System.out.println("Numero de premios: " + numeroDePremios);
+		
+		System.out.println(pelicula.obtenerFichaTenica());		
+		System.out.println(pelicula.obtenerFichaTenica());
+		
+		Usuario usuario = new Usuario();
+		usuario.nombre = "Daniel";
+		usuario.fechaRegistro = LocalDateTime.of(2026, 12, 24, 17, 15, 14);
+		
+		System.out.println(usuario.fechaRegistro);
+		
+		usuario.ver(pelicula);
+		
+//		Scanner scanner = new Scanner(System.in);		
+//		System.out.println("Cual es tu nombre?");
+//		String nombre = scanner.nextLine();
+//		
+//		System.out.println("Hola " + nombre + ", esto es Platzi Play!");
+//		
+//		System.out.println(nombre + " cuantos años tienes?");
+//		int edad = scanner.nextInt();
+//		
+//		System.out.println(nombre + " puede ver contenido +" + edad);
+		
+		
+
+	}
+
+}
+
+
+
+
+
+
+
+

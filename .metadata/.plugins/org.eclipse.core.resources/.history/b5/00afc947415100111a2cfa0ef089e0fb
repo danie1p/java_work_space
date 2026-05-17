@@ -1,0 +1,20 @@
+package platzi.play.plataforma;
+
+import java.time.LocalDateTime;
+
+import platzi.play.contenido.Pelicula;
+
+public class Usuario {
+	public String nombre;
+	public String email;
+	public LocalDateTime fechaRegistro;
+	
+	public Usuario(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void ver(Pelicula pelicula) {
+		System.out.println(nombre + " esta viendo...");
+		pelicula.reproducir();
+	}
+}
