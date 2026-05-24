@@ -2,7 +2,6 @@ package platzi.play;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Scanner;
 
 import platzi.play.contenido.Pelicula;
@@ -61,9 +60,6 @@ public class Main {
 				}	
 				case BUSCAR_POR_GENERO -> {
 					String generoBuscado = ScannerUtils.capturarTexto("Genero del contenido a buscar.");
-					List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
-					System.out.println("\n" + contenidoPorGenero.size() + " encontrados para el genero " + generoBuscado + "\n");
-					contenidoPorGenero.forEach(Pelicula -> System.out.println(Pelicula.obtenerFichaTenica() + "\n"));
 				}
 				case ELIMINAR -> {
 					String tituloPorEliminar = ScannerUtils.capturarTexto("Nombre del contenido a eliminar");

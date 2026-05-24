@@ -1,7 +1,0 @@
-package platzi.play;
-
-public class MainStackHeap {
-	public static void main(String[] args) {
-		
-	}
-}

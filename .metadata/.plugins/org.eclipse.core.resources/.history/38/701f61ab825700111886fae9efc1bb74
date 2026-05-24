@@ -36,25 +36,13 @@ public class Plataforma {
 	}
 	
 	public Pelicula buscarPorPelicula(String titulo) {
-//		for (Pelicula pelicula : contenido) {
-//			if (pelicula.getTitulo().equalsIgnoreCase(titulo)) {
-//				return pelicula;
-//			}
-//		}
+		for (Pelicula pelicula : contenido) {
+			if (pelicula.getTitulo().equalsIgnoreCase(titulo)) {
+				return pelicula;
+			}
+		}
 		
-		return contenido.stream()
-				 .filter(Pelicula -> Pelicula.getTitulo().equalsIgnoreCase(titulo))
-				 .findFirst()
-				 .orElse(null);
-		
-//		return null;
-	}
-	
-	public List<Pelicula> buscarPorGenero(String genero) {
-		return contenido
-						.stream()
-						.filter(Pelicula -> Pelicula.getGenero().equalsIgnoreCase(genero))
-						.toList();
+		return null;
 	}
 	
 	public List<Pelicula> getContenido() {
@@ -80,4 +68,3 @@ public class Plataforma {
 
 
 
- 
