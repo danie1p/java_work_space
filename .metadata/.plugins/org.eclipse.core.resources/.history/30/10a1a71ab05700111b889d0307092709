@@ -72,11 +72,6 @@ public class Main {
 					System.out.println("\n" + contenidoPorGenero.size() + " encontrados para el genero " + generoBuscado + "\n");
 					contenidoPorGenero.forEach(Pelicula -> System.out.println(Pelicula.obtenerFichaTenica() + "\n"));
 				}
-				case VER_POPULARES -> {
-					int cantidad = ScannerUtils.capturarNumero("Cantidad de resultas a mostrar?");
-					List<Pelicula> populares = plataforma.getPopuplares(cantidad);
-					populares.forEach(Pelicula -> System.out.println(Pelicula.obtenerFichaTenica()));
-				}
 				case ELIMINAR -> {
 					String tituloPorEliminar = ScannerUtils.capturarTexto("Nombre del contenido a eliminar");
 					Pelicula pelicula = plataforma.buscarPorPelicula(tituloPorEliminar);

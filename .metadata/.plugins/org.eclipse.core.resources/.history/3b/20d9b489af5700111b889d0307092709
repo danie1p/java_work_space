@@ -1,7 +1,6 @@
 package platzi.play.plataforma;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -61,13 +60,8 @@ public class Plataforma {
 						.toList();
 	}
 	
-	public List<Pelicula> getPopuplares(int numero) {
-		return contenido
-						.stream()
-						.sorted(Comparator.comparingDouble(Pelicula::getCalificacion)
-						.reversed())
-						.limit(numero)
-						.toList();
+	public List<Pelicula> getPopuplares() {
+		
 	}
 	
 	public int getDuracionTotal() {

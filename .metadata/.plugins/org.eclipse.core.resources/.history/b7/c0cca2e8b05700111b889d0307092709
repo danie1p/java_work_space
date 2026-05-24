@@ -61,12 +61,11 @@ public class Plataforma {
 						.toList();
 	}
 	
-	public List<Pelicula> getPopuplares(int numero) {
+	public List<Pelicula> getPopuplares() {
 		return contenido
 						.stream()
 						.sorted(Comparator.comparingDouble(Pelicula::getCalificacion)
 						.reversed())
-						.limit(numero)
 						.toList();
 	}
 	

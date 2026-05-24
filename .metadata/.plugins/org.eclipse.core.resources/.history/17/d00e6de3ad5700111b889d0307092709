@@ -18,7 +18,6 @@ public class Main {
 	public static final int MOSTRAR_TODO = 2;
 	public static final int BUSCAR_POR_TITULO = 3;
 	public static final int BUSCAR_POR_GENERO = 4;
-	public static final int VER_POPULARES = 5;
 	public static final int ELIMINAR = 8;
 	public static final int SALIR = 9;
 
@@ -29,15 +28,12 @@ public class Main {
 		
 		cargarPeliculas(plataforma);
 		
-		System.out.println("Mas de " + plataforma.getDuracionTotal() + " minutos de contenido\n");
-		
 		while(true) {
 			int opcionElegida = ScannerUtils.capturarNumero("""
 					1. Agregar contenido
 					2. Mostar todo
 					3. Buscar por titulo
 					4. Buscar por genero
-					5. Ver Populares
 					8. Eliminar
 					9. Salir
 					""");		
@@ -52,10 +48,7 @@ public class Main {
 					Pelicula pelicula = new Pelicula(nombre, duracion, genero, calificacion);
 					plataforma.agregar(pelicula);
 				}				
-				case MOSTRAR_TODO ->{ 
-					List<String> titulos = plataforma.getTitulos();
-					titulos.forEach(titulo -> System.out.println(titulo));
-				}				
+				case MOSTRAR_TODO -> plataforma.mostrarTitulos();				
 				case BUSCAR_POR_TITULO -> {
 					String nombreBuscado = ScannerUtils.capturarTexto("Nombre del contenido a buscar");
 					Pelicula pelicula = plataforma.buscarPorPelicula(nombreBuscado);
@@ -71,11 +64,6 @@ public class Main {
 					List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
 					System.out.println("\n" + contenidoPorGenero.size() + " encontrados para el genero " + generoBuscado + "\n");
 					contenidoPorGenero.forEach(Pelicula -> System.out.println(Pelicula.obtenerFichaTenica() + "\n"));
-				}
-				case VER_POPULARES -> {
-					int cantidad = ScannerUtils.capturarNumero("Cantidad de resultas a mostrar?");
-					List<Pelicula> populares = plataforma.getPopuplares(cantidad);
-					populares.forEach(Pelicula -> System.out.println(Pelicula.obtenerFichaTenica()));
 				}
 				case ELIMINAR -> {
 					String tituloPorEliminar = ScannerUtils.capturarTexto("Nombre del contenido a eliminar");

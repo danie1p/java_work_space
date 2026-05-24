@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
 
+import jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput;
 import platzi.play.contenido.Pelicula;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
@@ -73,8 +74,7 @@ public class Main {
 					contenidoPorGenero.forEach(Pelicula -> System.out.println(Pelicula.obtenerFichaTenica() + "\n"));
 				}
 				case VER_POPULARES -> {
-					int cantidad = ScannerUtils.capturarNumero("Cantidad de resultas a mostrar?");
-					List<Pelicula> populares = plataforma.getPopuplares(cantidad);
+					List<Pelicula> populares = plataforma.getPopuplares();
 					populares.forEach(Pelicula -> System.out.println(Pelicula.obtenerFichaTenica()));
 				}
 				case ELIMINAR -> {
