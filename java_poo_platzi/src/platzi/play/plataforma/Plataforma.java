@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
 
 public class Plataforma {
@@ -54,10 +55,10 @@ public class Plataforma {
 //		return null;
 	}
 	
-	public List<Pelicula> buscarPorGenero(String genero) {
+	public List<Pelicula> buscarPorGenero(Genero genero) {
 		return contenido
 						.stream()
-						.filter(Pelicula -> Pelicula.getGenero().equalsIgnoreCase(genero))
+						.filter(Pelicula -> Pelicula.getGenero().equals(genero))
 						.toList();
 	}
 	
@@ -68,6 +69,17 @@ public class Plataforma {
 						.reversed())
 						.limit(numero)
 						.toList();
+	}
+	
+	public List<Pelicula> getPeliculasConCalificacionMayorA(int calificacion) {
+		return contenido
+						.stream()
+						.filter(Pelicula -> Pelicula.getCalificacion() >= calificacion)
+						.toList();
+	}
+	
+	public Pelicula getLaMasPopular() {
+		return this.getPopuplares(1).get(0);
 	}
 	
 	public int getDuracionTotal() {

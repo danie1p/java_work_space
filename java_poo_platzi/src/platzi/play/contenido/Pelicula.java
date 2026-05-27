@@ -6,21 +6,25 @@ public class Pelicula {
 	private String titulo;
 	private String descripcion;
 	private int duracion;
-	private String genero;
+	private Genero genero;
 	private LocalDate fechaEstreno;
 	private double calificacion;
 	private boolean disponible;
+	private Idioma idioma;
+	private Calidad calidad;
 
-	public Pelicula(String titulo, int duracion, String genero) {
+	public Pelicula(String titulo, int duracion, Genero genero, Idioma idioma, Calidad calidad) {
 		this.titulo = titulo;
 		this.duracion = duracion;
 		this.genero = genero;
 		this.fechaEstreno = LocalDate.now();
 		this.disponible = true;
+		this.idioma = idioma;
+		this.calidad = calidad;
 	}
 	
-	public Pelicula(String titulo, int duracion, String genero, double calificacion) {
-		this(titulo, duracion, genero);
+	public Pelicula(String titulo, int duracion, Genero genero,  double calificacion, Idioma idioma, Calidad calidad) {
+		this(titulo, duracion, genero, idioma, calidad);
 		this.calificar(calificacion);
 	}
 
@@ -31,7 +35,9 @@ public class Pelicula {
 	public String obtenerFichaTenica() {
 		return titulo + " (" + fechaEstreno.getYear() + ")\n" +
 			   "Genero: " + genero + "\n" + 
-				"Calificacion: " + calificacion + "/5";
+				"Calificacion: " + calificacion + "/5\n" +
+				"Idioma " + idioma.name() + "\n" +
+				"Calidad " + calidad.name() + "\n";
 	}
 	
 	public void calificar(double calificacion) {
@@ -60,7 +66,7 @@ public class Pelicula {
 		return duracion;
 	}
 
-	public String getGenero() {
+	public Genero getGenero() {
 		return genero;
 	}
 
@@ -90,6 +96,30 @@ public class Pelicula {
 
 	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
+	}
+
+	public Idioma getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(Idioma idioma) {
+		this.idioma = idioma;
+	}
+
+	public Calidad getCalidad() {
+		return calidad;
+	}
+
+	public void setCalidad(Calidad calidad) {
+		this.calidad = calidad;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+
+	public void setCalificacion(double calificacion) {
+		this.calificacion = calificacion;
 	}
 }
 

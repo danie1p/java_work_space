@@ -2,6 +2,10 @@ package platzi.play.util;
 
 import java.util.Scanner;
 
+import platzi.play.contenido.Calidad;
+import platzi.play.contenido.Genero;
+import platzi.play.contenido.Idioma;
+
 public class ScannerUtils {
 	public static final Scanner SCANNER = new Scanner(System.in);
 	
@@ -34,6 +38,59 @@ public class ScannerUtils {
 		double dato = SCANNER.nextDouble();
 		SCANNER.nextLine();
 		return dato;
+	}
+	
+	public static Genero capturarGenero(String mensaje) {
+		while(true) {
+			System.out.println(mensaje + " ...Opciones: ");
+			
+			for(Genero genero : Genero.values()) {
+				System.out.println("- " + genero.name());
+			}
+			
+			System.out.println("Cual quieres?");
+			
+			String entrada = capturarTexto(mensaje).toUpperCase();
+			
+			try {
+				return Genero.valueOf(entrada);
+			} catch (IllegalArgumentException e) {
+				System.out.println("Genero no aceptado. " + mensaje + ":");
+			}
+		}
+	}
+	
+	public static Idioma capturarIdioma(String mensaje) {
+		while(true) {
+			System.out.println(mensaje + "...opciones");
+			for (Idioma idioma : Idioma.values()) {
+				System.out.println(" -" + idioma.name());
+			}
+			System.out.println("Cual quieres?");
+			String entrada = capturarTexto("Idioma del contenido").toUpperCase();
+			try {
+				return Idioma.valueOf(entrada);
+			} catch (IllegalArgumentException e) {
+				System.out.println("Idioma no disponible. " + mensaje + ":");
+			}
+		}
+	}
+	
+	public static Calidad capturarCalidad(String mensaje) {
+		while(true) {
+			System.out.println(mensaje + "...Opciones");
+			
+			for(Calidad calidad : Calidad.values()) {
+				System.out.println(calidad.name());
+			}
+			System.out.println("Cual quierers?");
+			String entrada = capturarTexto("Calidad del contenido?").toUpperCase();
+			try {
+				return Calidad.valueOf(entrada);
+			} catch (IllegalArgumentException e) {
+				System.out.println("Formato de calidad no disponible. " + mensaje + ":");
+			}
+		}
 	}
 }
 
