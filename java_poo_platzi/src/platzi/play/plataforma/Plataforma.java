@@ -7,6 +7,8 @@ import java.util.List;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.ResumenContenido;
+import platzi.play.excepcion.PeliculaExistenteExcepcion;
 
 public class Plataforma {
 	private String nombre;
@@ -18,6 +20,12 @@ public class Plataforma {
 	}
 	
 	public void agregar(Pelicula elemento) {
+		Pelicula contenido = this.buscarPorPelicula(elemento.getTitulo());
+		
+		if (contenido != null) {
+			throw new PeliculaExistenteExcepcion(elemento.getTitulo());
+		}
+		
 		this.contenido.add(elemento);
 	}
 	
@@ -38,6 +46,13 @@ public class Plataforma {
 	
 	public void eliminar(Pelicula pelicula) {
 		contenido.remove(pelicula);
+	}
+	
+	public List<ResumenContenido> getResumenes() {
+		return contenido
+					.stream()
+					.map(Pelicula -> new ResumenContenido(Pelicula.getTitulo(), Pelicula.getDuracion(), Pelicula.getGenero()))
+					.toList();
 	}
 	
 	public Pelicula buscarPorPelicula(String titulo) {

@@ -8,7 +8,11 @@
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="platzi.play.plataforma.Plataforma"/>
     <fullyQualifiedTypeName name="jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput"/>
-    <fullyQualifiedTypeName name="platzi.play.util.ScannerUtils"/>
     <fullyQualifiedTypeName name="platzi.play.contenido.Pelicula"/>
     <fullyQualifiedTypeName name="java.util.Comparator"/>
+    <fullyQualifiedTypeName name="platzi.play.contenido.Genero"/>
+    <fullyQualifiedTypeName name="platzi.play.contenido.Idioma"/>
+    <fullyQualifiedTypeName name="platzi.play.contenido.Calidad"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
+    <fullyQualifiedTypeName name="platzi.play.util.ScannerUtils"/>
 </qualifiedTypeNameHistroy>

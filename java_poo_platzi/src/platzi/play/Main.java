@@ -9,6 +9,8 @@ import platzi.play.contenido.Calidad;
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Idioma;
 import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.ResumenContenido;
+import platzi.play.excepcion.PeliculaExistenteExcepcion;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannerUtils;
@@ -59,11 +61,16 @@ public class Main {
 					Calidad calidad = ScannerUtils.capturarCalidad("Calidad del contenido");
 					
 					Pelicula pelicula = new Pelicula(nombre, duracion, genero, calificacion, idioma, calidad);
-					plataforma.agregar(pelicula);
+					try {
+						plataforma.agregar(pelicula);
+					} catch (PeliculaExistenteExcepcion e) {
+						System.out.println(e.getMessage());
+					}
+					
 				}				
 				case MOSTRAR_TODO ->{ 
-					List<String> titulos = plataforma.getTitulos();
-					titulos.forEach(titulo -> System.out.println(titulo));
+					List<ResumenContenido> contenidosResumidos = plataforma.getResumenes();
+					contenidosResumidos.forEach(ResumenContenido -> System.out.println(ResumenContenido.toString()));
 				}				
 				case BUSCAR_POR_TITULO -> {
 					String nombreBuscado = ScannerUtils.capturarTexto("Nombre del contenido a buscar");
