@@ -42,9 +42,9 @@ public class Contenido {
 	public String obtenerFichaTenica() {
 		return titulo + " (" + fechaEstreno.getYear() + ")\n" +
 			   "Genero: " + genero + "\n" + 
-				"Calificacion: " + calificacion + "/5\n" +
-				"Idioma " + idioma.name() + "\n" +
-				"Calidad " + calidad.name() + "\n";
+				"Calificacion: " + calificacion + "/5\n" ;
+//				"Idioma " + idioma.name() + "\n" +
+//				"Calidad " + calidad.name() + "\n";
 	}
 	
 	public void calificar(double calificacion) {

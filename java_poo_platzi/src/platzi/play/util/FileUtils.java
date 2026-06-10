@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platzi.play.contenido.Genero;
+import platzi.play.contenido.Pelicula;
 import platzi.play.contenido.Contenido;
+import platzi.play.contenido.Documental;
 
 public class FileUtils {
 	
@@ -24,9 +26,18 @@ public class FileUtils {
 								   String.valueOf(contenido.getCalificacion()),
 								   contenido.getFechaEstreno().toString()
 		);
+		
+		String lineaFinal = "";
+		if (contenido instanceof Documental) {
+			Documental documental = (Documental) contenido;
+			lineaFinal = "DOCUMENTAL" + SEPARADOR + linea + SEPARADOR + documental.getNarrador();
+		} else {
+			lineaFinal = "PELICULA" + SEPARADOR + linea;
+		}
+		
 		try {
 			Files.writeString(Paths.get(NOMBRE_ARCHIVO), 
-					linea + System.lineSeparator(), 
+					lineaFinal + System.lineSeparator(), 
 					StandardOpenOption.CREATE, 
 					StandardOpenOption.APPEND);
 		} catch (IOException e) {
@@ -41,17 +52,27 @@ public class FileUtils {
 			lines.forEach(linea -> {
 				String[] datos = linea.split("\\" + SEPARADOR);
 				
-				if (datos.length == 5) {
-					String titulo = datos[0];
-					int duracion = Integer.parseInt(datos[1]);
-					Genero genero = Genero.valueOf(datos[2].toUpperCase());
-					double calificacion = datos[3].isBlank() ? 0 : Double.parseDouble(datos[3]);
-					LocalDate fechaEstreno = LocalDate.parse(datos[4]);
+				String tipoContenido = datos[0];
+				
+				if (("PELICULA".equals(tipoContenido) && datos.length == 6) ||
+					 ("DOCUMENTAL".equals(tipoContenido) && datos.length == 7)) {
+					String titulo = datos[1];
+					int duracion = Integer.parseInt(datos[2]);
+					Genero genero = Genero.valueOf(datos[3].toUpperCase());
+					double calificacion = datos[4].isBlank() ? 0 : Double.parseDouble(datos[4]);
+					LocalDate fechaEstreno = LocalDate.parse(datos[5]);
 					
-					Contenido pelicula = new Contenido(titulo, duracion, genero, calificacion);
-					pelicula.setFechaEstreno(fechaEstreno);
+					Contenido contenido;
 					
-					contenidoDesdeArchivo.add(pelicula);
+					if ("PELICULA".equals(tipoContenido)) {
+						contenido = new Pelicula(titulo, duracion, genero, calificacion);						
+					} else {
+						String narrador = datos[6];
+						contenido = new Documental(titulo, duracion, genero, calificacion, narrador);
+					}
+					
+					contenido.setFechaEstreno(fechaEstreno);					
+					contenidoDesdeArchivo.add(contenido);
 				}
 			});
 		} catch (IOException e) {

@@ -31,7 +31,7 @@ public class Main {
 	public static final int BUSCAR_POR_GENERO = 4;
 	public static final int VER_POPULARES = 5;
 	public static final int REPRODUCIR = 6;
-	public static final int CONTENIDO_MAS_POPULAR = 7;
+	public static final int BUSCAR_POR_TIPO = 7;
 	public static final int ELIMINAR = 8;
 	public static final int SALIR = 9;
 
@@ -52,14 +52,14 @@ public class Main {
 					4. Buscar por genero
 					5. Ver Populares
 					6. Reproducir
-					7. Contenido mas popular
+					7. Buscar por tipo de contenido
 					8. Eliminar
 					9. Salir
 					""");		
 			
 			switch (opcionElegida) {
 				case AGREGAR -> {
-					int tipoContenido = ScannerUtils.capturarNumero("Que tipo de contenido quieres agregar? \n1. Pelicula \n2. Documental");
+					int tipoContenido = ScannerUtils.capturarNumero("\nQue tipo de contenido quieres agregar? \n1. Pelicula \n2. Documental");
 					String nombre = ScannerUtils.capturarTexto("Nombre del contenido");
 					Genero genero = ScannerUtils.capturarGenero("Genero del contenido");
 					int duracion = ScannerUtils.capturarNumero("Duracion del contenido");
@@ -119,8 +119,15 @@ public class Main {
 					}
 				}
 				
-				case CONTENIDO_MAS_POPULAR -> {
-					System.out.println(plataforma.getLaMasPopular().obtenerFichaTenica());
+				case BUSCAR_POR_TIPO -> {
+					int tipoContenido = ScannerUtils.capturarNumero("\nQue tipo de contenido quieres buscar? \n1. Pelicula \n2. Documental");
+					if (tipoContenido == 1) {
+						List<Pelicula> peliculas = plataforma.getPeliculas();
+						peliculas.forEach(pelicula -> System.out.println(pelicula.obtenerFichaTenica()));
+					} else {
+						List<Documental> documentales = plataforma.getDocumentales();
+						documentales.forEach(documental -> System.out.println(documental.obtenerFichaTenica()));
+					}
 				}
 				
 				case ELIMINAR -> {
