@@ -8,41 +8,41 @@ import java.util.List;
 import java.util.Map;
 
 import platzi.play.contenido.Genero;
-import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.Contenido;
 import platzi.play.contenido.ResumenContenido;
-import platzi.play.excepcion.PeliculaExistenteExcepcion;
+import platzi.play.excepcion.ContenidoExistenteExcepcion;
 import platzi.play.util.FileUtils;
 
 public class Plataforma {
 	private String nombre;
-	private List<Pelicula> contenido;
-	private Map<Pelicula, Integer> visualizaciones;
+	private List<Contenido> contenido;
+	private Map<Contenido, Integer> visualizaciones;
 	
 	public Plataforma(String nombre) {
 		this.nombre = nombre;
-		this.contenido = new ArrayList<Pelicula>();
+		this.contenido = new ArrayList<Contenido>();
 		this.visualizaciones = new HashMap<>();
 	}
 	
-	public void agregar(Pelicula elemento) {
-		Pelicula contenido = this.buscarPorPelicula(elemento.getTitulo());
+	public void agregar(Contenido elemento) {
+		Contenido contenido = this.buscarPorTitulo(elemento.getTitulo());
 		
 		if (contenido != null) {
-			throw new PeliculaExistenteExcepcion(elemento.getTitulo());
+			throw new ContenidoExistenteExcepcion(elemento.getTitulo());
 		}
 		
 		FileUtils.escribirContenido(elemento);
 		this.contenido.add(elemento);
 	}
 	
-	public void reproducir(Pelicula contenido) {
+	public void reproducir(Contenido contenido) {
 		int conteoActual = visualizaciones.getOrDefault(contenido, 0);
 		System.out.println(contenido.getTitulo() + " ha sido reproducido " + conteoActual + " veces");
 		this.contarVisualizaciones(contenido);
 		contenido.reproducir();
 	}
 	
-	private void contarVisualizaciones(Pelicula contenido) {
+	private void contarVisualizaciones(Contenido contenido) {
 		int conteoActual = visualizaciones.getOrDefault(contenido, 0);
 		visualizaciones.put(contenido, conteoActual + 1);
 	}
@@ -52,17 +52,17 @@ public class Plataforma {
 //			System.out.println(contenido.get(i).getTitulo());
 //		}
 		
-//		for (Pelicula pelicula : contenido) {
+//		for (Contenido pelicula : contenido) {
 //			System.out.println(pelicula.getTitulo());
 //		}
 		
 		return contenido
 					    .stream()
-					    .map(Pelicula::getTitulo)
+					    .map(Contenido::getTitulo)
 					    .toList();
 	}
 	
-	public void eliminar(Pelicula pelicula) {
+	public void eliminar(Contenido pelicula) {
 		contenido.remove(pelicula);
 	}
 	
@@ -73,8 +73,8 @@ public class Plataforma {
 					.toList();
 	}
 	
-	public Pelicula buscarPorPelicula(String titulo) {
-//		for (Pelicula pelicula : contenido) {
+	public Contenido buscarPorTitulo(String titulo) {
+//		for (Contenido pelicula : contenido) {
 //			if (pelicula.getTitulo().equalsIgnoreCase(titulo)) {
 //				return pelicula;
 //			}
@@ -88,41 +88,41 @@ public class Plataforma {
 //		return null;
 	}
 	
-	public List<Pelicula> buscarPorGenero(Genero genero) {
+	public List<Contenido> buscarPorGenero(Genero genero) {
 		return contenido
 						.stream()
 						.filter(Pelicula -> Pelicula.getGenero().equals(genero))
 						.toList();
 	}
 	
-	public List<Pelicula> getPopuplares(int numero) {
+	public List<Contenido> getPopuplares(int numero) {
 		return contenido
 						.stream()
-						.sorted(Comparator.comparingDouble(Pelicula::getCalificacion)
+						.sorted(Comparator.comparingDouble(Contenido::getCalificacion)
 						.reversed())
 						.limit(numero)
 						.toList();
 	}
 	
-	public List<Pelicula> getPeliculasConCalificacionMayorA(int calificacion) {
+	public List<Contenido> getPeliculasConCalificacionMayorA(int calificacion) {
 		return contenido
 						.stream()
 						.filter(Pelicula -> Pelicula.getCalificacion() >= calificacion)
 						.toList();
 	}
 	
-	public Pelicula getLaMasPopular() {
+	public Contenido getLaMasPopular() {
 		return this.getPopuplares(1).get(0);
 	}
 	
 	public int getDuracionTotal() {
 		return contenido
 						.stream()
-						.mapToInt(Pelicula::getDuracion)
+						.mapToInt(Contenido::getDuracion)
 						.sum();
 	}
 	
-	public List<Pelicula> getContenido() {
+	public List<Contenido> getContenido() {
 		return contenido;
 	}
 	

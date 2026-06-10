@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import platzi.play.contenido.Genero;
-import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.Contenido;
 
 public class FileUtils {
 	
 	public static final String NOMBRE_ARCHIVO = "contenido.txt";
 	public static final String SEPARADOR = "|";
 	
-	public static void escribirContenido(Pelicula contenido) {
+	public static void escribirContenido(Contenido contenido) {
 		String linea = String.join(SEPARADOR, 
 								   contenido.getTitulo(),
 								   String.valueOf(contenido.getDuracion()),
@@ -34,8 +34,8 @@ public class FileUtils {
 		}
 	}
 	
-	public static List<Pelicula> leerContenido() {
-		List<Pelicula> contenidoDesdeArchivo = new ArrayList<>();
+	public static List<Contenido> leerContenido() {
+		List<Contenido> contenidoDesdeArchivo = new ArrayList<>();
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(NOMBRE_ARCHIVO));
 			lines.forEach(linea -> {
@@ -48,7 +48,7 @@ public class FileUtils {
 					double calificacion = datos[3].isBlank() ? 0 : Double.parseDouble(datos[3]);
 					LocalDate fechaEstreno = LocalDate.parse(datos[4]);
 					
-					Pelicula pelicula = new Pelicula(titulo, duracion, genero, calificacion);
+					Contenido pelicula = new Contenido(titulo, duracion, genero, calificacion);
 					pelicula.setFechaEstreno(fechaEstreno);
 					
 					contenidoDesdeArchivo.add(pelicula);
