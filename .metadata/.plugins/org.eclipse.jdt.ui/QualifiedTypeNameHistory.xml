@@ -4,15 +4,24 @@
     <fullyQualifiedTypeName name="platzi.play.plataforma.Usuario"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="platzi.play.plataforma.Plataforma"/>
     <fullyQualifiedTypeName name="jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput"/>
-    <fullyQualifiedTypeName name="platzi.play.contenido.Pelicula"/>
     <fullyQualifiedTypeName name="java.util.Comparator"/>
     <fullyQualifiedTypeName name="platzi.play.contenido.Genero"/>
     <fullyQualifiedTypeName name="platzi.play.contenido.Idioma"/>
     <fullyQualifiedTypeName name="platzi.play.contenido.Calidad"/>
     <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
     <fullyQualifiedTypeName name="platzi.play.util.ScannerUtils"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="platzi.play.excepcion.PeliculaExistenteExcepcion"/>
+    <fullyQualifiedTypeName name="platzi.play.contenido.ResumenContenido"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.nio.file.Files"/>
+    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="platzi.play.contenido.Pelicula"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="platzi.play.util.FileUtils"/>
+    <fullyQualifiedTypeName name="java.nio.file.StandardOpenOption"/>
 </qualifiedTypeNameHistroy>

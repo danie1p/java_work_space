@@ -28,6 +28,13 @@ public class Pelicula {
 		this.calificar(calificacion);
 	}
 
+	public Pelicula(String titulo, int duracion, Genero genero, double calificacion) {
+		this.titulo = titulo;
+		this.duracion = duracion;
+		this.genero = genero;
+		this.calificacion = calificacion;
+	}
+
 	public void reproducir() {
 		System.out.println("Reproduciendo " + titulo);
 	}
