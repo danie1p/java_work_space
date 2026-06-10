@@ -9,6 +9,7 @@ import java.util.Map;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.Promocionable;
 import platzi.play.contenido.Contenido;
 import platzi.play.contenido.Documental;
 import platzi.play.contenido.ResumenContenido;
@@ -129,6 +130,13 @@ public class Plataforma {
 	
 	public Contenido getLaMasPopular() {
 		return this.getPopuplares(1).get(0);
+	}
+	
+	public List<Promocionable> getContenidoPromocionable() {
+		return contenido.stream()
+			   .filter(contenido -> contenido instanceof Promocionable)
+			   .map(contenidoProm -> (Promocionable) contenidoProm)
+			   .toList();
 	}
 	
 	public int getDuracionTotal() {
